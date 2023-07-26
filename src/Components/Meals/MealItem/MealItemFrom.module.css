@@ -1,10 +1,6 @@
 .form {
     text-align: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-weight: bold;
+    font-weight: bold; /*extra added by me to make qty bold*/
 }
 
 .form button {
@@ -22,17 +18,4 @@
 .form button:active {
     background-color: #641e03;
     border-color: #641e03;
-}
-
-.form label span {
-    margin: 0 10px;
-}
-
-.form input {
-    width: 3rem;
-    padding: 0.2rem;
-    margin: 0.5rem 0.2rem;
-    font-weight: bold;
-    border-radius: 0.4rem;
-    border: 1px solid rgb(201, 196, 196);
 }

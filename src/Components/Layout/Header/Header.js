@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import styles from "./Header.module.css"
 import mealImage from '../../../Assets/meals.jpg';
 import HeaderCartButton from '../HeaderCartButton/HeaderCartButton';
-import Meals from '../../Meals/Meals';
 
 const Header = (props) => {
     return (
@@ -14,7 +13,6 @@ const Header = (props) => {
             <div className={styles.mainImage}>
                 <img src={mealImage} alt="A table full of delicious food!" />
             </div>
-            <Meals />
         </Fragment>
     )
 }

@@ -19,14 +19,6 @@
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0rem);
     }
-}
-
-.listItem {
-    margin: auto;
-}
-
-.listItem h3 {
-    color: rgb(190, 25, 25);
 }

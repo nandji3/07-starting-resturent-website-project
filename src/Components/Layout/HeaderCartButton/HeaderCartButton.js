@@ -13,7 +13,7 @@ const HeaderCartButton = (props) => {
 
     return (
         <Fragment>
-            <button className={styles.button} onClick={props.onClick}>
+            <button className={styles.button} onClick={cartCTX.showCart}>
                 <span className={styles.icon}>
                     <CartIcon />
                 </span>

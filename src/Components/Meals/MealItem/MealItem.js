@@ -14,7 +14,7 @@ const MealItem = ({ id, name, description, price }) => {
                 <div className={styles.price}>{markedPrice}</div>
             </div>
             <div>
-                <MealItemForm />
+                <MealItemForm id={id} />
             </div>
         </li>
     )

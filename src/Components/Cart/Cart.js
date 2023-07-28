@@ -7,17 +7,17 @@ const Cart = (props) => {
     const cartItems = <ul className={styles.cartItems}>{[{ id: 'c1', name: 'Sushi', amount: 2, price: 12.99 }].map((item) => <li>{item.name}</li>)}</ul>;
 
     return (
-        <Modal>
+        <Modal onCloseCart={props.onCloseCart}>
             {cartItems}
-            <div className={styles.total}>
+            < div className={styles.total} >
                 <span>Total Amount</span>
                 <span>35.26</span>
-            </div>
+            </ div>
             <div className={styles.actions}>
-                <button className={styles.buttonClose}>Close</button>
+                <button className={styles.buttonClose} onClick={props.onCloseCart}>Close</button>
                 <button className={styles.buttonOrder}>Order</button>
             </div>
-        </Modal>
+        </Modal >
     )
 }
 export default Cart;

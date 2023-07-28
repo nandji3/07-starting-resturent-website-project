@@ -1,5 +1,27 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import CartContext from "./CartContext";
+
+const defaultCartState = {
+    items: [],
+    totalAmount: 0,
+}
+
+const cartReducer = (state, action) => {
+    if (action.type === "ADD") {
+        const updatedItems = state.items.concat(action.item);  //this give all updatedItems in new new copy of array, because .concate() method create a new copy of array after adding new items in oldArray --So we can easily calculate updatedTotalAmount of items.
+        const updatedTotalAmout = state.totalAmount + action.item.price * action.item.amount;
+        return {
+            items: updatedItems,
+            totalAmount: updatedTotalAmout
+        }
+    }
+    else if (action.type === "REMOVE")
+        state.items.filter((item) => {
+            return (item.id !== action.id);
+        })
+    return defaultCartState;
+}
+
 
 const CartProvider = ({ children }) => {
 
@@ -15,12 +37,16 @@ const CartProvider = ({ children }) => {
     }
 
     //These all object properties for manage the cartProudcts and total cartItem which is show in cart
-    const addItemToCartHandler = (item) => {
 
+    const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
+
+
+    const addItemToCartHandler = (item) => {
+        dispatchCartAction({ type: "ADD", item: item })
     }
 
     const removeItemFromCartHandler = (id) => {
-
+        dispatchCartAction({ type: "REMOVE", id: id })
     }
 
     const cartContext = {
@@ -31,8 +57,8 @@ const CartProvider = ({ children }) => {
         cartIsShown: cartIsShown,
 
         //These all object properties for manage the cartProudcts and total cartItem which is show in cart
-        items: [],
-        totalAmount: 0,
+        items: cartState.items,
+        totalAmount: cartState.totalAmount,
         addItem: addItemToCartHandler,
         removeItem: removeItemFromCartHandler,
     }

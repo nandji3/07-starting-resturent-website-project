@@ -32,7 +32,9 @@ const DUMMY_MEALS = [
 
 const AvailableMeals = () => {
 
-    const mealsList = DUMMY_MEALS.map((meal) => <MealItem key={meal.id} {...meal} />)  //meal props send after desturcturing it
+    const mealsList = DUMMY_MEALS.map((meal) => (
+        < MealItem key={meal.id} {...meal} />
+    ));  //meal props send after desturcturing it
 
     return (
         <section className={styles.meals}>

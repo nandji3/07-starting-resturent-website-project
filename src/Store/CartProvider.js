@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from "react";
 import CartContext from "./CartContext";
+import e from "express";
 
 const defaultCartState = {
     items: [],
@@ -10,7 +11,7 @@ const cartReducer = (state, action) => {
     if (action.type === "ADD") {
 
         //Processe for adding new item and increse the quantity/amount of exising item
-        const updatedTotalAmout = state.totalAmount + action.item.price * action.item.amount;
+        const updatedTotalAmount = state.totalAmount + action.item.price * action.item.amount;
 
         //Processe for adding new item and increse the quantity/amount of exising item
         const existingCartItemIndex = state.items.findIndex((item) => (item.id === action.item.id));
@@ -28,7 +29,27 @@ const cartReducer = (state, action) => {
         }
         return {
             items: updatedItems,
-            totalAmount: updatedTotalAmout,
+            totalAmount: updatedTotalAmount,
+        };
+    }
+
+    if (action.type === "REMOVE") {
+        const existingCartItemIndex = state.items.findIndex((item) => (item.id === action.id));
+        const existingItem = state.items[existingCartItemIndex];
+        const updatedTotalAmount = state.totalAmount - existingItem.price;
+
+        let updatedItems;
+        if (existingItem.amount === 1) {
+            updatedItems = state.items.filter((item) => (item.id !== action.id));  //means remove completely from cart
+        }
+        else {
+            const updatedItem = { ...existingItem, amount: existingItem.amount - 1 }
+            updatedItems = [...state.items];  //create copywrite of all item whcih is existing in state 
+            updatedItems[existingCartItemIndex] = updatedItem;
+        }
+        return {
+            items: updatedItems,
+            totalAmount: updatedTotalAmount,
         };
     }
     return defaultCartState;

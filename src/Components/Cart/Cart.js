@@ -12,10 +12,10 @@ const Cart = (props) => {
     const hasItems = cartCTX.items.length > 0; //if items present then return true else false
 
     const cartItemRemoveHandler = (id) => {
-
+        cartCTX.removeItem(id);
     }
     const cartItemAddHandler = (item) => {
-
+        cartCTX.addItem({ ...item, amount: 1 })
     }
 
     const cartItems = <ul className={styles.cartItems}>

@@ -13,15 +13,13 @@ const cartReducer = (state, action) => {
         const updatedTotalAmout = state.totalAmount + action.item.price * action.item.amount;
 
         //Processe for adding new item and increse the quantity/amount of exising item
-        const existingCartItemIndex = state.items.findIndex((item) => {
-            return (item.id === action.item.id);
-        });
+        const existingCartItemIndex = state.items.findIndex((item) => (item.id === action.item.id));
 
-        const existingCartItem = state.item[existingCartItemIndex];
+        const existingCartItem = state.items[existingCartItemIndex];
 
         let updatedItems;
         if (existingCartItem) {
-            const updatedItem = { ...existingCartItem, amount: existingCartItem.amount + action.item.amount }
+            const updatedItem = { ...existingCartItem, amount: existingCartItem.amount + action.item.amount };
             updatedItems = [...state.items];  //create copywrite of all exising items in current state
             updatedItems[existingCartItemIndex] = updatedItem;  //update existing index data
         }
@@ -30,13 +28,9 @@ const cartReducer = (state, action) => {
         }
         return {
             items: updatedItems,
-            totalAmount: updatedTotalAmout
-        }
+            totalAmount: updatedTotalAmout,
+        };
     }
-    else if (action.type === "REMOVE")
-        state.items.filter((item) => {
-            return (item.id !== action.id);
-        })
     return defaultCartState;
 }
 

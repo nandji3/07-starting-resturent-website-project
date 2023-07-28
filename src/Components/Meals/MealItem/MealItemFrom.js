@@ -3,8 +3,9 @@ import styles from "./MealItemFrom.module.css";
 import Input from "../../UI/Input/Input";
 
 const MealItemForm = (props) => {
+
     const [amountIsValid, setAmountIsValid] = useState(true);
-    const amountInputRef = useRef();
+    const amountInputRef = useRef();   //access input field  node directly
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -13,7 +14,7 @@ const MealItemForm = (props) => {
         //when we extract value from the input field it is in string format because of type ='number' so nedd to convert string into number by adding only plus sign infont of that value
         if (enteredAmount.trim().length === 0 || enteredAmountNumber < 1 || enteredAmountNumber > 5) {
             setAmountIsValid(false);
-            return; //because we not want to submit data in this case
+            return;     //because we not want to submit data in this case
         }
         props.onAddToCart(enteredAmountNumber);  // if amountIsValid=true;
     }

@@ -8,6 +8,7 @@ const MealItem = ({ id, name, description, price }) => {
     const markedPrice = `$${price.toFixed(2)}`;
 
     const cartCTX = useContext(CartContext);
+
     const addToCartHandler = (amount) => {
         cartCTX.addItem({
             id: id,
